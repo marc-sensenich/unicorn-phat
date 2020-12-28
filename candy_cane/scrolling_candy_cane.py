@@ -65,7 +65,7 @@ def stop():
 if __name__ == '__main__':
     print('Press Ctrl-C to exit the program')
     if HAS_UNICORNHAT:
-        unicornhat.set_layout(unicornhat.PHAT_VERTICAL)
+        unicornhat.set_layout(unicornhat.PHAT)
         unicornhat.brightness(0.4)
 
     try:
