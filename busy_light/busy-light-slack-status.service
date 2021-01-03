@@ -1,0 +1,13 @@
+[Unit]
+Description=Set a Pimoroni Unicorn pHAT based on a Slack user's status
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /usr/local/lib/busy_light/slack_status.py
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
