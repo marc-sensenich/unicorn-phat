@@ -82,7 +82,7 @@ def main():
                     unicornhat.show()
         except Exception as e:
             # Blindly catch exceptions and try again ofter a delay
-            print(f"Unhandled exception {e.message}")
+            print(f"Unhandled exception {e}")
 
         time.sleep(args.delay)
 
