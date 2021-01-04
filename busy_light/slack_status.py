@@ -80,7 +80,6 @@ def main():
                 unicornhat.set_all(*args.free_color)
                 unicornhat.show()
 
-        print(f"Sleeping for {args.delay} seconds...")
         time.sleep(args.delay)
 
 
