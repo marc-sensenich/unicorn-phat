@@ -16,7 +16,7 @@ fi
 
 mkdir -p /etc/systemd/system/${SERVICE_TARGET}.d/
 
-cat <<EOF >> /etc/systemd/system/${SERVICE_TARGET}.d/override.conf
+cat <<EOF > /etc/systemd/system/${SERVICE_TARGET}.d/override.conf
 [Service]
 Environment='SLACK_TOKEN=${SLACK_TOKEN}'
 EOF

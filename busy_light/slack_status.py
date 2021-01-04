@@ -50,7 +50,7 @@ def main():
     argument_parser.add_argument('--delay', type=int,
                                  help='Delay between checking the Slack API for busy status in seconds', default=10)
     argument_parser.add_argument('--slack-token', type=str,
-                                 help='The Slack user token with the OAuth scope user.profiles.get. Can be set from the environment variable SLACK_TOKEN.',
+                                 help='The Slack user token with the OAuth scope user.profile:read. Can be set from the environment variable SLACK_TOKEN.',
                                  default=getenv('SLACK_TOKEN', None))
     argument_parser.add_argument('--busy-color', type=int, choices=range(0, 256),
                                  help="The RGB color to set when you're busy, must be between 0 and 255", metavar='255',
@@ -71,14 +71,18 @@ def main():
     while True:
         # Get Slack Status Text
         slack_user = SlackUser(args.slack_token)
-        if slack_user.is_busy():
-            if HAS_UNICORNHAT:
-                unicornhat.set_all(*args.busy_color)
-                unicornhat.show()
-        else:
-            if HAS_UNICORNHAT:
-                unicornhat.set_all(*args.free_color)
-                unicornhat.show()
+        try:
+            if slack_user.is_busy():
+                if HAS_UNICORNHAT:
+                    unicornhat.set_all(*args.busy_color)
+                    unicornhat.show()
+            else:
+                if HAS_UNICORNHAT:
+                    unicornhat.set_all(*args.free_color)
+                    unicornhat.show()
+        except Exception as e:
+            # Blindly catch exceptions and try again ofter a delay
+            print(f"Unhandled exception {e.message}")
 
         time.sleep(args.delay)
 
