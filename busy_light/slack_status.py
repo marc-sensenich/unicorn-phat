@@ -18,7 +18,7 @@ except ImportError:
 
 
 class SlackUser:
-    BUSY_STATUS_REGEX = r"In a meeting|In a call|In a Zoom call"
+    BUSY_STATUS_REGEX = r"In a meeting|In a call|In a Zoom meeting"
 
     def __init__(self, slack_token):
         self.slack_token = slack_token
