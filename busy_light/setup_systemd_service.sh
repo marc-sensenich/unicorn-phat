@@ -26,4 +26,4 @@ mkdir -p /usr/local/lib/busy_light
 
 systemctl daemon-reload
 systemctl enable ${SERVICE_TARGET}
-systemctl start ${SERVICE_TARGET}
+systemctl restart ${SERVICE_TARGET}
